@@ -1,3 +1,20 @@
 .special {
   background-color: blue;
-};
+}
+// 트리형태의 네스팅
+// &: 부모 참조 연산자
+li {
+  .bg-light {
+    background-color: #cccccc !important;
+  }
+  &.selected {
+    div {
+      &.bg-light {
+        background-color: #666666 !important;
+      }
+      &.text-dark {
+        color: white !important;
+      }
+    }
+  }
+}
