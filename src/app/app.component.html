@@ -1,3 +1,17 @@
-<p>App.Component: root component</p>
+<!-- <p>App.Component: root component</p> -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-between">
+  <a class="navbar-brand" routerLink="/">TOH</a>
 
-<app-heroes></app-heroes>
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/todo" routerLinkActive="selected">todo</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/heroes" routerLinkActive="selected">heroes</a>
+    </li>
+  </ul>
+</nav>
+
+<router-outlet></router-outlet>
+
+<!-- <app-heroes></app-heroes> -->
