@@ -1,13 +1,34 @@
-<!-- <p>
+<!--<app-hero-detail [selectedHero]="selectedHero"></app-hero-detail>
+
+<hr *ngIf="selectedHero">-->
+
+<router-outlet></router-outlet>
+
+<h2>My Heroes</h2>
+
+<ul>
+  <li class="d-flex m-1" *ngFor="let hero of heroes" (click)="onSelected(hero)"
+      [class.selected]="hero === selectedHero"
+      routerLink="/heroes/{{hero.id}}">
+    <span class="bg-primary text-light p-2 rounded-left">{{hero.id}}</span>
+    <div class="bg-light text-dark w-50 p-2 rounded-right">{{hero.name}}</div>
+  </li>
+</ul>
+
+
+
+<!--<p>
   heroes works! {{hero.id}}, {{hero.name}}
 </p>
 
 <div>
   <button [disabled]="isSpecial">propery binding button</button>
 </div>
+
 <div>
   <div [class.special]="isSpecial">class binding button</div>
 </div>
+
 <div>
   <button [style.color]="isSpecial ? 'red' : 'green'">style binding button</button>
 </div>
@@ -20,14 +41,4 @@
   <label>name:
     <input [(ngModel)]="hero.name" placeholder="name">
   </label>
-</div> -->
-
-<h1>My Heroes</h1>
-<ul>
-  <li class="d-flex m-1" *ngFor="let hero of heroes" (click)="onSelected(hero)"
-  [class.selected]="hero === selectedHero">
-    <span class="rounded-left p-2 bg-primary text-light">{{hero.id}}</span>
-    <div class="rounded-right p-2 bg-light text-dark w-50">{{hero.name}}</div>
-  </li>
-</ul>
-<app-hero-detail [selectedHero]="selectedHero"></app-hero-detail>
+</div>-->

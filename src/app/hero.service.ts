@@ -13,14 +13,12 @@ export class HeroService {
 
   /**
    * heroes를 리턴한다.
-   * 서비스 변수에 저장하기 때문에 새로고침하면 지워진다.
-   * 유지하려면 로컬 스토리지 등을 사용
-  */
-  /* getHeroes(): Hero[] {
-    return HEROES;
-  } */
-  // ReactivX Observable 비동기
+   */
   getHeroes(): Observable<Hero[]> {
-    return of(HEROES).pipe(delay(3000));
+    return of(HEROES).pipe(delay(500));
+  }
+
+  getHero(id: number) {
+    return HEROES.find(item => item.id === id ? true : false);
   }
 }
