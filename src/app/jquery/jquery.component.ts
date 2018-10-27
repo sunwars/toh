@@ -19,11 +19,9 @@ export class JqueryComponent implements OnInit {
   getTodoList() {
     $.ajax({
       url: 'http://www.javabrain.kr:8080/api/todo',
-      method: 'GET', // body가 없기 때문에 URL 파라메타 전달, POST body가 있음
-      dataType: 'json', // 받을때 data type
+      method: 'GET',
+      dataType: 'json',
       success: (data) => {
-        // javascript this 1)생성자:자기자신 / 2)Json객체: 부모 / 3)그외:글로벌
-        // success: function(data) => { json 객체 this 부모 {} 가르킴
         console.log(data);
         this.todoList = data;
         this.refresh();
@@ -51,5 +49,5 @@ export class JqueryComponent implements OnInit {
       $('#todo_list').append(todo);
     });
   }
-
 }
+

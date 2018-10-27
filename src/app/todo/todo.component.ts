@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import TodoVo from '../domain/todo.vo';
+import {HeroService} from '../hero.service';
 
 @Component({
   selector: 'app-todo',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoComponent implements OnInit {
 
-  constructor() { }
+  todoList: TodoVo[];
+
+  constructor(private heroService: HeroService) { }
 
   ngOnInit() {
+    this.heroService.getTodoList()
+      .subscribe(body => {
+        this.todoList = body;
+        console.log(this.todoList);
+      });
   }
 
 }

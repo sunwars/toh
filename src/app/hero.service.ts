@@ -5,6 +5,7 @@ import {Observable, of, Subject} from 'rxjs';
 import {delay} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../environments/environment';
+import TodoVo from './domain/todo.vo';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,10 @@ export class HeroService {
 
   getHero(hero_id: number): Observable<Hero> {
     return this.http.get<Hero>(environment.HOST + `/api/hero/${hero_id}`);
+  }
+
+  getTodoList(): Observable<TodoVo[]> {
+    // return this.http.get<TodoVo[]>(`${environment.HOST}/api/todo`);
+    return this.http.get(`${environment.HOST}/api/todo`);
   }
 }
