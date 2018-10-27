@@ -19,6 +19,8 @@ export class HeroDetailComponent implements OnInit {
         console.log(params); // { "id": "11"}
         // 11에 해당하는 모델값을 서비스에서 가져온다.
         this.selectedHero = this.heroService.getHero(+params.id);
+        // 파라메터 받은것을 publish 한다. 1:n 구조
+        this.heroService.refresh.next(+params.id);
       });
   }
 
