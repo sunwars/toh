@@ -3,7 +3,7 @@ import {HEROES} from './mock-heroes';
 import {Hero} from './hero';
 import {Observable, of, Subject} from 'rxjs';
 import {delay} from 'rxjs/operators';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../environments/environment';
 import TodoVo from './domain/todo.vo';
 
@@ -35,5 +35,11 @@ export class HeroService {
   getTodoList(): Observable<TodoVo[]> {
     // return this.http.get<TodoVo[]>(`${environment.HOST}/api/todo`);
     return this.http.get(`${environment.HOST}/api/todo`);
+  }
+
+  addTodo(todo: TodoVo) {
+    const headers = new HttpHeaders();
+    headers.append('Content-Type','application/json');
+    return this.http.post(`${environment.HOST}/api/todo`, todo,{headers: headers});
   }
 }

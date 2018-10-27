@@ -1,3 +1,15 @@
+<div class="row">
+  <div class="col-sm-8">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="할일을 입력하세요." required
+        [(ngModel)]="newTodo.todo">
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <button class="btn btn-primary btn-block" (click)="addTodo()">추가</button>
+  </div>
+</div>
+
 <table class="table table-striped">
   <thead>
   <tr>
@@ -9,16 +21,6 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <td>완료</td>
-    <td>빨래하기</td>
-    <td>2018-06-01</td>
-    <td>2018-06-01</td>
-    <td>
-      <button class="btn btn-success btn-sm">수정</button>
-      <button class="btn btn-danger btn-sm ml-1">삭제</button>
-    </td>
-  </tr>
   <tr *ngFor="let todo of todoList">
     <td>{{todo.isFinished ? '완료' : '미완료'}}</td>
     <td>{{todo.todo}}</td>
