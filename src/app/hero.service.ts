@@ -3,6 +3,8 @@ import {HEROES} from './mock-heroes';
 import {Hero} from './hero';
 import {Observable, of, Subject} from 'rxjs';
 import {delay} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,8 @@ export class HeroService {
   refresh = new Subject<number>(); // publisher: next() 함수로 데이터 발생
   refresh$ = this.refresh.asObservable(); // subscriber: subscribe()로 데이터 수신
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+  }
 
   /**
    * heroes를 리턴한다.
@@ -19,10 +22,12 @@ export class HeroService {
    * 유지하려면 로컬 스토리지 등을 사용
    */
   getHeroes(): Observable<Hero[]> {
-    return of(HEROES).pipe(delay(500));
+    // return of(HEROES).pipe(delay(500));
+    // es6 템플릿 스트링 문법 : `${변수}`
+    return this.http.get<Hero[]>(`${environment.HOST}/api/heroes`);
   }
 
-  getHero(id: number) {
-    return HEROES.find(item => item.id === id ? true : false);
+  getHero(hero_id: number): Observable<Hero> {
+    return this.http.get<Hero>(environment.HOST + `/api/hero/${hero_id}`);
   }
 }

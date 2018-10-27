@@ -12,7 +12,7 @@ import {NavigationStart, Router} from '@angular/router';
 export class HeroesComponent implements OnInit {
   // 리터럴 객체로 객체 생성
   /*hero: Hero = {
-    id: 11,
+    hero_id: 11,
     name: 'Winstorm'
   };*/
 
@@ -26,7 +26,7 @@ export class HeroesComponent implements OnInit {
     // new 로 객체 생성
     // this는 객체 인스턴스 자기자신을 가르킨다.
     this.hero = new Hero();
-    this.hero.id = 1;
+    this.hero.hero_id = 1;
     this.hero.name = 'Winstorm';
 
     // 의존성이 있는 코드 heroes 클래스가 heroService 클랙스에 의존
@@ -47,7 +47,7 @@ export class HeroesComponent implements OnInit {
       .subscribe(data =>{
         console.log('heroes: ', data);
         // 해당 파라메터로 selected CSS 처리
-        this.selectedHero = HEROES.find(item=> item.id === data ? true : false);
+        this.selectedHero = HEROES.find(item=> item.hero_id === data ? true : false);
       });
 
     // 부모 목록으로 되돌아 올때 감지가 안되므로 추가
