@@ -40,6 +40,13 @@ export class HeroesComponent implements OnInit {
       .subscribe(data => {
         this.heroes = data;
       });
+
+    // 파라메터 수신
+    this.heroService.refresh$
+      .subscribe(data =>{
+        console.log('heroes: ', data);
+        // 해당 파라메터로 selected CSS 처리
+      });
   }
 
   ngOnInit() {
