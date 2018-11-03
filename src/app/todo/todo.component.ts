@@ -31,4 +31,11 @@ export class TodoComponent implements OnInit {
         this.newTodo = new TodoVo();
       });
   }
+
+  save(todo: TodoVo) {
+    todo.isEdited = true;
+  }
+  restore(todo: TodoVo) {
+    todo.isEdited = false;
+  }
 }

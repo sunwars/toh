@@ -37,24 +37,24 @@
     </td>
   </tr> -->
   <ng-template ngFor let-todo [ngForOf]="todoList">
-    <tr>
+    <tr *ngIf="!todo.isEdited">
       <td>{{todo.isFinished ? '완료' : '미완료'}}</td>
       <td>{{todo.todo}}</td>
       <td>{{todo.created}}</td>
       <td>{{todo.updated}}</td>
       <td>
-        <button class="btn btn-success btn-sm">수정</button>
+        <button class="btn btn-success btn-sm" (click)="save(todo)" >수정</button>
         <button class="btn btn-danger btn-sm ml-1">삭제</button>
       </td>
     </tr>
-    <tr>
+    <tr *ngIf="todo.isEdited" >
       <td><input type="checkbox" [(ngModel)]="todo.isFinished"></td>
       <td><input [(ngModel)]="todo.todo"></td>
       <td>{{todo.created}}</td>
       <td>{{todo.updated}}</td>
       <td>
         <button class="btn btn-info btn-sm">저장</button>
-        <button class="btn btn-warning btn-sm ml-1">취소</button>
+        <button class="btn btn-warning btn-sm ml-1" (click)="restore(todo)" >취소</button>
       </td>
     </tr>
   </ng-template>
