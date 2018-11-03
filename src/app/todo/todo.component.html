@@ -37,7 +37,7 @@
     </td>
   </tr> -->
   <ng-template ngFor let-todo [ngForOf]="todoList">
-    <tr *ngIf="!todo.isEdited">
+    <tr *ngIf="!todo.isEdited" [@flyInOut] = "'in'">
       <td>{{todo.isFinished ? '완료' : '미완료'}}</td>
       <td>{{todo.todo}}</td>
       <td>{{todo.created}}</td>

@@ -1,11 +1,33 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import TodoVo from '../domain/todo.vo';
 import {HeroService} from '../hero.service';
+import {animate, keyframes, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.scss']
+  styleUrls: ['./todo.component.scss'],
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({opacity: 1, transform: 'translate(0, 0)'})),
+      transition('void => in', [
+        style({opacity: 0, transform: 'translate(-100%, 0)'}),
+        animate(300)
+      ]),
+      /*transition('in => void', [
+        animate(300,style({opacity: 0, transform: 'translate(100%, 0)'}))
+      ])*/
+      transition('in => void', [
+        // animate(300, style({opacity: '0', transform: 'translate(100%, 0)'}))
+        // multi frame transition
+        animate(300, keyframes([
+          style({opacity: 1, transform: 'translateX(0)',     offset: 0}),
+          style({opacity: 1, transform: 'translateX(-50px)', offset: 0.7}),
+          style({opacity: 0, transform: 'translateX(100%)',  offset: 1.0})
+        ]))
+      ])
+    ])
+  ]
 })
 export class TodoComponent implements OnInit {
   todoList: TodoVo[];
@@ -66,13 +88,13 @@ export class TodoComponent implements OnInit {
     if(result) {
       this.heroService.removeTodo(todo.todo_id)
         .subscribe(body => {
+
           if(body.result === 0) {
             // todoList에서 해당 todo_id를 삭제
             // index를 찾은 후에 splice로 삭제
             const index =  this.todoList.findIndex(item => item.todo_id === todo.todo_id ? true : false);
             this.todoList.splice(index, 1);
           }
-
         });
     }
   }

@@ -11,6 +11,7 @@ import { TodoComponent } from './todo/todo.component';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import { JqueryComponent } from './jquery/jquery.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   // HomeComponent가 부모(root)의 router-outlet으로 들어간다.
@@ -34,6 +35,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule, // ngModel 디렉티브를 갖고있다.
     RouterModule.forRoot(routes),
