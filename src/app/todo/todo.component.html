@@ -1,3 +1,7 @@
+<p>{{ 10000}} 원</p>
+<p>{{ 10000 | mydate: '$'}} $</p>
+<p>{{ 10000 | mydate: 'yen'}} yen</p>
+
 <form #myForm="ngForm" (submit)="addTodo()">
   <div class="row">
     <div class="col-sm-8">
@@ -60,3 +64,5 @@
   </ng-template>
   </tbody>
 </table>
+
+<p>{{ 1000000 || number}}</p>
