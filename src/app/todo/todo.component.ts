@@ -52,10 +52,28 @@ export class TodoComponent implements OnInit {
   modify(todo: TodoVo) {
     this.heroService.modifyTodo(todo)
       .subscribe(body => {
-        // 성공하면
+        // 성공하면 서버에서 넘어온 값으로 기존값을 overwrite해야 updated가 반영
+        Object.assign(todo, body);
+
         todo.isEdited = false;
         // todoVo 객체 전체를 마라메터로 넘겼다.
         // 실제로는 API 규격에 맞게 넘겨야 된다.
       });
+  }
+
+  remove(todo: TodoVo) {
+    let result = confirm('삭제하시겠습니다?');
+    if(result) {
+      this.heroService.removeTodo(todo.todo_id)
+        .subscribe(body => {
+          if(body.result === 0) {
+            // todoList에서 해당 todo_id를 삭제
+            // index를 찾은 후에 splice로 삭제
+            const index =  this.todoList.findIndex(item => item.todo_id === todo.todo_id ? true : false);
+            this.todoList.splice(index, 1);
+          }
+
+        });
+    }
   }
 }
