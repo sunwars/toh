@@ -24,6 +24,8 @@ const routes: Routes = [
       {path: ':hero_id', component: HeroDetailComponent} // :은 동적 유알엘
     ]},
   {path: 'jquery', component: JqueryComponent},
+  // 관리자 모듈을 lazy-loading
+  {path: 'admin', loadChildren: './admin/admin.module#AdminModule'},
 ];
 
 @NgModule({
