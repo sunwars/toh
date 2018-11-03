@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import TodoVo from '../domain/todo.vo';
 import {HeroService} from '../hero.service';
 
