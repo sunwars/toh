@@ -24,7 +24,7 @@
 
 <table class="table table-striped">
   <thead>
-  <tr>
+  <tr appHighlight>
     <th>완료</th>
     <th>todo</th>
     <th>생성일</th>
@@ -44,11 +44,11 @@
     </td>
   </tr> -->
   <ng-template ngFor let-todo [ngForOf]="todoList">
-    <tr *ngIf="!todo.isEdited" [@flyInOut] = "'in'">
+    <tr *ngIf="!todo.isEdited" [@flyInOut] = "'in'" appHighlight [highLight]="'#C8FFFF'">
       <td>{{todo.isFinished ? '완료' : '미완료'}}</td>
       <td>{{todo.todo}}</td>
       <td>{{todo.created | mydate}}</td>
-      <td>{{todo.updated}}</td>
+      <td>{{todo.updated | date: 'yyyy-MM-dd aa HH:mmng '}}</td>
       <td>
         <button class="btn btn-success btn-sm" (click)="save(todo)" >수정</button>
         <button class="btn btn-danger btn-sm ml-1" (click)="remove(todo)">삭제</button>

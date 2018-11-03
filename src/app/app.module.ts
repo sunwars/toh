@@ -13,6 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { JqueryComponent } from './jquery/jquery.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MydatePipe } from './mydate.pipe';
+import { HighlightDirective } from './highlight.directive';
 
 const routes: Routes = [
   // HomeComponent가 부모(root)의 router-outlet으로 들어간다.
@@ -34,6 +35,7 @@ const routes: Routes = [
     TodoComponent,
     JqueryComponent,
     MydatePipe,
+    HighlightDirective,
   ],
   imports: [
     BrowserModule,
