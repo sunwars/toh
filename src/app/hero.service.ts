@@ -14,7 +14,10 @@ export class HeroService {
   refresh = new Subject<number>(); // publisher: next() 함수로 데이터 발생
   refresh$ = this.refresh.asObservable(); // subscriber: subscribe()로 데이터 수신
 
+  headers = new HttpHeaders();
+
   constructor(private http: HttpClient) {
+    this.headers.append('Content-Type','application/json');
   }
 
   /**
@@ -37,9 +40,11 @@ export class HeroService {
     return this.http.get<TodoVo[]>(`${environment.HOST}/api/todo`);
   }
 
-  addTodo(todo: TodoVo) {
-    const headers = new HttpHeaders();
-    headers.append('Content-Type','application/json');
-    return this.http.post<TodoVo>(`${environment.HOST}/api/todo`, todo,{headers: headers});
+  addTodo(todo: TodoVo): Observable<TodoVo[]> {
+    return this.http.post<TodoVo>(`${environment.HOST}/api/todo`, todo,{headers: this.headers});
+  }
+
+  modifyTodo(todo: TodoVo): Observable<TodoVo[]> {
+    return this.http.put<TodoVo>(`${environment.HOST}/api/todo`, todo,{headers: this.headers});
   }
 }
