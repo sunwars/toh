@@ -1,6 +1,9 @@
+<!--
+<p>{{ 1000000 | number}}</p>
 <p>{{ 10000}} 원</p>
 <p>{{ 10000 | mydate: '$'}} $</p>
 <p>{{ 10000 | mydate: 'yen'}} yen</p>
+-->
 
 <form #myForm="ngForm" (submit)="addTodo()">
   <div class="row">
@@ -44,7 +47,7 @@
     <tr *ngIf="!todo.isEdited" [@flyInOut] = "'in'">
       <td>{{todo.isFinished ? '완료' : '미완료'}}</td>
       <td>{{todo.todo}}</td>
-      <td>{{todo.created}}</td>
+      <td>{{todo.created | mydate}}</td>
       <td>{{todo.updated}}</td>
       <td>
         <button class="btn btn-success btn-sm" (click)="save(todo)" >수정</button>
@@ -54,7 +57,7 @@
     <tr *ngIf="todo.isEdited" >
       <td><input type="checkbox" [(ngModel)]="todo.isFinished"></td>
       <td><input [(ngModel)]="todo.todo"></td>
-      <td>{{todo.created}}</td>
+      <td>{{todo.created | mydate}}</td>
       <td>{{todo.updated}}</td>
       <td>
         <button class="btn btn-info btn-sm" (click)="modify(todo)">저장</button>
@@ -64,5 +67,3 @@
   </ng-template>
   </tbody>
 </table>
-
-<p>{{ 1000000 || number}}</p>
