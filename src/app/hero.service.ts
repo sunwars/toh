@@ -34,12 +34,12 @@ export class HeroService {
 
   getTodoList(): Observable<TodoVo[]> {
     // return this.http.get<TodoVo[]>(`${environment.HOST}/api/todo`);
-    return this.http.get(`${environment.HOST}/api/todo`);
+    return this.http.get<TodoVo[]>(`${environment.HOST}/api/todo`);
   }
 
   addTodo(todo: TodoVo) {
     const headers = new HttpHeaders();
     headers.append('Content-Type','application/json');
-    return this.http.post(`${environment.HOST}/api/todo`, todo,{headers: headers});
+    return this.http.post<TodoVo>(`${environment.HOST}/api/todo`, todo,{headers: headers});
   }
 }
