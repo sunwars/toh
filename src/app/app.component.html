@@ -1,10 +1,9 @@
-<!-- <p>App.Component: root component</p> -->
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-between">
   <a class="navbar-brand" routerLink="/">TOH</a>
 
-  <ul class="navbar-nav hidden-xs-down d-none d-sm-flex">
+  <ul class="navbar-nav d-none d-sm-flex">
     <li class="nav-item">
-      <a class="nav-link" href routerLink="/jquery" routerLinkActive="selected">jquery</a>
+      <a class="nav-link" routerLink="/jquery" routerLinkActive="selected">jquery</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" routerLink="/todo" routerLinkActive="selected">todo</a>
@@ -16,7 +15,12 @@
       <a class="nav-link" routerLink="/admin" routerLinkActive="selected">admin</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href routerLink="/login" routerLinkActive="selected">login</a>
+      <a class="nav-link" routerLink="/login" routerLinkActive="selected"
+         *ngIf="!authService.isLogIn()">login</a>
+    </li>
+    <li class="nav-item"  routerLinkActive="active" *ngIf="authService.isLogIn()"
+        (click)="authService.logout()" style="cursor: pointer;">
+      <a class="nav-link">logout</a>
     </li>
   </ul>
 
@@ -28,16 +32,15 @@
       <button class="dropdown-item" routerLink="/heroes" routerLinkActive="active">heroes</button>
       <button class="dropdown-item" routerLink="/admin" routerLinkActive="active">admin</button>
       <button class="dropdown-item" routerLink="/login" routerLinkActive="active">login</button>
-      <button class="dropdown-item" >logout</button>
+      <button class="dropdown-item">logout</button>
     </div>
   </div>
 </nav>
-
-
 
 <div class="container mt-4">
   <router-outlet></router-outlet>
 </div>
 
 <toaster-container [toasterconfig]="config"></toaster-container>
-<!-- <app-heroes></app-heroes> -->
+
+<!--<app-heroes></app-heroes>-->

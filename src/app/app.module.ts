@@ -15,21 +15,22 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MydatePipe } from './mydate.pipe';
 import { HighlightDirective } from './highlight.directive';
 import {ToasterModule} from 'angular2-toaster';
-import {NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
+import {AuthGuardService} from './auth-guard.service';
 
 const routes: Routes = [
   // HomeComponent가 부모(root)의 router-outlet으로 들어간다.
   {path: '', component: HomeComponent},
+  {path: 'jquery', component: JqueryComponent},
   {path: 'todo', component: TodoComponent},
   {path: 'heroes', component: HeroesComponent, children: [
       // HeroDetailComponent가 부모의 router-outlet으로 들어간다.
       {path: ':hero_id', component: HeroDetailComponent} // :은 동적 유알엘
     ]},
-  {path: 'jquery', component: JqueryComponent},
-  // 관리자 모듈을 lazy-loading
-  {path: 'admin', loadChildren: './admin/admin.module#AdminModule'},
   {path: 'login', component: LoginComponent},
+  // 관리자 모듈을 lazy-loading
+  {path: 'admin', loadChildren: './admin/admin.module#AdminModule', canLoad: [AuthGuardService]}
 ];
 
 @NgModule({
@@ -42,7 +43,7 @@ const routes: Routes = [
     JqueryComponent,
     MydatePipe,
     HighlightDirective,
-    LoginComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +53,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     ToasterModule.forRoot(),
-    NgbModule
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
