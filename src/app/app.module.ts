@@ -16,6 +16,7 @@ import { MydatePipe } from './mydate.pipe';
 import { HighlightDirective } from './highlight.directive';
 import {ToasterModule} from 'angular2-toaster';
 import {NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   // HomeComponent가 부모(root)의 router-outlet으로 들어간다.
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'jquery', component: JqueryComponent},
   // 관리자 모듈을 lazy-loading
   {path: 'admin', loadChildren: './admin/admin.module#AdminModule'},
+  {path: 'login', component: LoginComponent},
 ];
 
 @NgModule({
@@ -40,6 +42,7 @@ const routes: Routes = [
     JqueryComponent,
     MydatePipe,
     HighlightDirective,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
