@@ -27,7 +27,7 @@ export class RegisterHeroComponent implements OnInit {
   }
 
   register() {
-    this.toasterService.pop('success', 'Args Title', 'Args Body');
+   /* this.toasterService.pop('success', 'Args Title', 'Args Body');*/
     // 폼이 유효하지 않으면 리턴
     if(!this.form.valid) {
       // inputbox를 강제로 한번씩 클릭
@@ -44,8 +44,9 @@ export class RegisterHeroComponent implements OnInit {
     const sendForm = Object.assign({}, this.form.value);
     this.adminService.addHero(sendForm)
       .subscribe(body =>{
-        // 폼 초기화
-
+        this.toasterService.pop('success', 'success', '등록되었습니다!');
+        // form 초기화
+        this.form.reset({});
         // alert 상자가 아니라 사용자에게 토스트로 정보를 보여준다.
       });
   }
