@@ -14,6 +14,7 @@ import { JqueryComponent } from './jquery/jquery.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MydatePipe } from './mydate.pipe';
 import { HighlightDirective } from './highlight.directive';
+import {ToasterModule} from 'angular2-toaster';
 
 const routes: Routes = [
   // HomeComponent가 부모(root)의 router-outlet으로 들어간다.
@@ -45,7 +46,8 @@ const routes: Routes = [
     AppRoutingModule,
     FormsModule, // ngModel 디렉티브를 갖고있다.
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    ToasterModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
