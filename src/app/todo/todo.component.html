@@ -67,9 +67,11 @@
   </ng-template>
   </tbody>
 </table>
-<ngb-pagination [collectionSize]="page.totalCount" [(page)]="page.pageIndex" [maxSize]="5"
-                [pageSize]="page.pageSize"
-                [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
-                (pageChange)="pageChange($event)">
+<div class="d-flex justify-content-center">
+  <ngb-pagination [collectionSize]="page.totalCount" [(page)]="page.pageIndex" [maxSize]="5"
+                  [pageSize]="page.pageSize"
+                  [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
+                  (pageChange)="pageChange($event)">
 
-</ngb-pagination>
+  </ngb-pagination>
+</div>
