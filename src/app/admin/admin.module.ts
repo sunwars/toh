@@ -8,6 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AdminService} from './admin.service';
 import {HttpClientModule} from '@angular/common/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {path: '', component: IndexComponent, children: [
@@ -22,7 +23,8 @@ const routes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   declarations: [
     IndexComponent,

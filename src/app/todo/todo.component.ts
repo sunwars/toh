@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import TodoVo from '../domain/todo.vo';
 import {HeroService} from '../hero.service';
 import {animate, keyframes, state, style, transition, trigger} from '@angular/animations';
+import {PageVo} from '../domain/page.vo';
 
 @Component({
   selector: 'app-todo',
@@ -37,13 +38,32 @@ export class TodoComponent implements OnInit {
   // key, 객체 명시적 type 지정
   tempMap = new Map<number, TodoVo>();
 
-  constructor(private heroService: HeroService) { }
+  // 페이지 정보
+  page = new PageVo(1, 5, 0);
+
+  constructor(private heroService: HeroService) {
+    // this.page.pageIndex = 1;
+    // this.page.pageSize = 5;
+    // this.page.totalCount = 0; //서버에서 받기전까지 알수 없다.
+  }
 
   ngOnInit() {
-    this.heroService.getTodoList()
+    this.getTodoList();
+  }
+  getTodoList(){
+    /*this.heroService.getTodoList()
       .subscribe(body => {
         this.todoList = body;
         console.log(this.todoList);
+      });*/
+    const startIndex = (this.page.pageIndex - 1) * this.page.pageSize;
+    const pageSize = this.page.pageSize;
+
+    this.heroService.getPagedTodoList(startIndex, pageSize)
+      .subscribe(body => {
+        this.todoList = body.data;
+        // totoal count
+        this.page.totalCount = body.total;
       });
   }
 
@@ -97,5 +117,12 @@ export class TodoComponent implements OnInit {
           }
         });
     }
+  }
+  pageChange(event: any){
+    // pageIndex가 이베트로 넘어온다.
+    console.log(event);
+
+    this.page.pageIndex = event;
+    this.getTodoList();
   }
 }

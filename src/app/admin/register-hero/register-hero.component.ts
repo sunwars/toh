@@ -19,7 +19,8 @@ export class RegisterHeroComponent implements OnInit {
       email: [null, Validators.compose([Validators.required, Validators.email])],
       sex: [null, Validators.required],
       country: [null, Validators.required],
-      address: null
+      address: null,
+      photo: null
     });
   }
 
@@ -51,4 +52,17 @@ export class RegisterHeroComponent implements OnInit {
       });
   }
 
+  fileUpload(event: any) {
+    console.log(event);
+
+    let formData = new FormData();
+    formData.append('file', event.target.files[0], event.target.files[0].name);
+
+    this.adminService.imageUpload(formData)
+      .subscribe(body => {
+        // 서버에 업로드된 url을 이미지에 바인딩
+        const image_url = 'http://eastflag.co.kr:3000/' + body['value'];
+        this.form.controls['photo'].setValue(image_url);
+      });
+  }
 }

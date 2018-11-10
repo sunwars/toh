@@ -15,6 +15,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MydatePipe } from './mydate.pipe';
 import { HighlightDirective } from './highlight.directive';
 import {ToasterModule} from 'angular2-toaster';
+import {NgbModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   // HomeComponent가 부모(root)의 router-outlet으로 들어간다.
@@ -47,7 +48,8 @@ const routes: Routes = [
     FormsModule, // ngModel 디렉티브를 갖고있다.
     RouterModule.forRoot(routes),
     HttpClientModule,
-    ToasterModule.forRoot()
+    ToasterModule.forRoot(),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
