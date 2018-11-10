@@ -45,7 +45,7 @@ export class HeroService {
     return this.http.post<TodoVo>(`${environment.HOST}/api/todo`, todo,{headers: this.headers});
   }
 
-  modifyTodo(todo: TodoVo): Observable<TodoVo[]> {
+  modifyTodo(todo: TodoVo): Observable<TodoVo> {
     return this.http.put<TodoVo>(`${environment.HOST}/api/todo`, todo,{headers: this.headers});
   }
 

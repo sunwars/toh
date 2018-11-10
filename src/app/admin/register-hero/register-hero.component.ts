@@ -14,8 +14,8 @@ export class RegisterHeroComponent implements OnInit {
       name: [null, Validators.compose([Validators.required, Validators.minLength(3),
       Validators.maxLength(20)])],
       email: [null, Validators.compose([Validators.required, Validators.email])],
-      sex: null,
-      country: null,
+      sex: [null, Validators.required],
+      country: [null, Validators.required],
       address: null
     });
   }
